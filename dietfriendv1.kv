@@ -1,0 +1,1984 @@
+#:import Factory kivy.factory.Factory
+#:import Popup kivy.uix.popup.Popup
+#:import toast kivymd.toast.toast
+#:import MapView kivy_garden.mapview.MapView
+
+WindowManager:
+    SignInPage:
+    SignUpPage:
+    PrivacyPolicy:
+    ChildApp:
+    FindFood:
+    ImageTake:
+    ImageSelection:
+    FoodNamingAfterImage:
+    BusinessImageTake:
+    BusinessImageSelection:
+    BusinessFoodNamingAfterImage:
+    FoodListPage:
+    MoreInfo:
+    WeekSummary:
+    Setting:
+    IndividualProfilePage:
+    LightVsDarkPage:
+    ColorThemePage:
+    BusinessProfilePage:
+    DealsPage:
+    FollowPage:
+    BusinessSignIn:
+    BusinessSignUp:
+    BusinessPrivacyPolicy:
+    BusinessDemandInfoPage:
+    BusinessLocationSetter:
+    OriginalBusinessIconSelection:
+    BusinessIconSelection:
+    BusinessHome:
+    BusinessSettings:
+    BusinessMISpecFood:
+    FollowersPage:
+
+
+
+<SignInPage>:
+    name: "signin"
+    username: username
+    password: password
+    MDRaisedButton:
+        text: "Business\nAccount"
+        font_size: 16
+        size_hint: 0.2, 0.16
+        pos_hint: {"center_x": 0.8, "center_y": 0.9}
+        md_bg_color: app.theme_cls.primary_dark
+        on_release: app.root.current = "businesssignin"
+    Label:
+        markup: True
+        text: "[font=calibri]Username:[/font]"
+        color: (9/255, 118/255, 237/255, 1)
+        font_size: 21
+        size_hint: 0.2, 0.1
+        pos_hint: {"center_x": 0.2, "center_y": 0.73}
+    TextInput:
+        id: username
+        text: ""
+        # [color=#9AAFC6][/color]
+        # color: (154/255, 175/255, 198/255, 0.75)
+        font_size: 24
+        size_hint: 0.8, 0.08
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+    Label:
+        markup: True
+        text: "[font=calibri]Password:[/font]"
+        color: (9/255, 118/255, 237/255, 1)
+        font_size: 21
+        size_hint: 0.8, 0.1
+        pos_hint: {"center_x": 0.2, "center_y": 0.43}
+    TextInput:
+        id: password
+        text: ""
+        # [color=#9AAFC6][/color]
+        # color: (154/255, 175/255, 198/255, 0.75)
+        font_size: 24
+        size_hint: 0.8, 0.08
+        pos_hint: {"center_x": 0.5, "center_y": 0.35}
+    MDFillRoundFlatButton:
+        text: "Sign In"
+        font_size: 16
+        size_hint: 0.16, 0.065
+        md_bg_color: app.theme_cls.primary_dark
+        pos_hint: {"center_x": 0.35, "center_y": 0.14}
+        on_press: root.sign_in()
+        on_release: app.root.current = "childapp"
+    MDFillRoundFlatButton:
+        text: "Sign Up"
+        font_size: 16
+        size_hint: 0.16, 0.065
+        md_bg_color: app.theme_cls.primary_dark
+        pos_hint: {"center_x": 0.65, "center_y": 0.14}
+        on_release: app.root.current = "signup"
+<SignUpPage>:
+    name: "signup"
+    usernameu: usernameu
+    passwordu: passwordu
+    signupbutton: signupbutton
+    Label:
+        text: "Username:"
+        font_size: 22
+        color: (9/255, 118/255, 237/255, 1)
+        size_hint: 0.2, 0.1
+        pos_hint: {"center_x": 0.15, "center_y": 0.75}
+    TextInput:
+        id: usernameu
+        text: ""
+        font_size: 16
+        size_hint: 0.8, 0.1
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+    Label:
+        text: "Password:"
+        font_size: 22
+        color: (9/255, 118/255, 237/255, 1)
+        size_hint: 0.2, 0.1
+        pos_hint: {"center_x": 0.15, "center_y": 0.45}
+    TextInput:
+        id: passwordu
+        text: ""
+        font_size: 16
+        size_hint: 0.8, 0.1
+        pos_hint: {"center_x": 0.5, "center_y": 0.35}
+    MDRaisedButton:
+        id: signupbutton
+        text: "Sign Up"
+        font_size: 16
+        size_hint: 0.2, 0.16
+        pos_hint: {"center_x": 0.5, "center_y": 0.1}
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.connectme()
+        on_release: app.root.current = "privacypolicy"
+<PrivacyPolicy>:
+    name: "privacypolicy"
+    privacypolicyaccept: privacypolicyaccept
+    BoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            Label:
+                text: "Privacy Policy: / Terms of Use:\n"*100
+                color: (149/255, 162/255, 177/255, 1)
+                font_size: 12
+                size_hint: 1.0, None
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                text_size: self.width, None
+                height: self.texture_size[1]
+        MDRaisedButton:
+            id: privacypolicyaccept
+            text: "Sign and Accept"
+            size_hint_max: 0.2, 0.15
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            md_bg_color: app.theme_cls.primary_dark
+            font_size: 16
+            on_release: app.root.current = "childapp"
+<BusinessSignIn>:
+    name: "businesssignin"
+    usernameb: usernameb
+    passwordb: passwordb
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.9}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_release: app.root.current = "signin"
+    Label:
+        text: "Business Name:"
+        font_size: 22
+        color: (9/255, 118/255, 237/255, 1)
+        size_hint: 0.1, 0.1
+        pos_hint: {"center_x": 0.25, "center_y": 0.75}
+    TextInput:
+        id: usernameb
+        text: ""
+        font_size: 16
+        size_hint: 0.8, 0.08
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+    Label:
+        text: "Business Account Password:"
+        font_size: 22
+        color: (9/255, 118/255, 237/255, 1)
+        size_hint: 0.1, 0.1
+        pos_hint: {"center_x": 0.331, "center_y": 0.45}
+    TextInput:
+        id: passwordb
+        text: ""
+        font_size: 16
+        size_hint: 0.8, 0.08
+        pos_hint: {"center_x": 0.5, "center_y": 0.35}
+    MDRaisedButton:
+        text: "Sign In"
+        font_size: 16
+        size_hint: 0.1, 0.1
+        pos_hint: {"center_x": 0.65, "center_y": 0.1}
+        md_bg_color: app.theme_cls.primary_dark
+        on_press: root.b_sign_in()
+        on_release: app.root.current = "businesshome"
+    MDRaisedButton:
+        text: "Sign Up"
+        font_size: 16
+        size_hint: 0.1, 0.1
+        pos_hint: {"center_x": 0.35, "center_y": 0.1}
+        md_bg_color: app.theme_cls.primary_dark
+        on_release: app.root.current = "businesssignup"
+<BusinessSignUp>:
+    name: "businesssignup"
+    usernameub: usernameub
+    passwordub: passwordub
+    signupbuttonb: signupbuttonb
+    GridLayout:
+        rows: 5
+        Label:
+            text: "Business Name:"
+            font_size: 22
+        TextInput:
+            id: usernameub
+            text: ""
+            font_size: 16
+        Label:
+            text: "Business Account Password:"
+            font_size: 22
+        TextInput:
+            id: passwordub
+            text: ""
+            font_size: 16
+        Button:
+            id: signupbuttonb
+            text: "Sign Up"
+            font_size: 16
+            on_press: root.businessconnectme()
+            on_release: app.root.current = "businessprivacypolicy"
+<BusinessPrivacyPolicy>:
+    name: "businessprivacypolicy"
+    privacypolicyacceptb: privacypolicyacceptb
+    BoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            Label:
+                text: "Business Privacy Policy: / Terms of Use:\n"*100
+                color: (149/255, 162/255, 177/255, 1)
+                font_size: 12
+                size_hint: 1.0, None
+                pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                text_size: self.width, None
+                height: self.texture_size[1]
+        MDRaisedButton:
+            id: privacypolicyacceptb
+            text: "Sign and Accept"
+            size_hint_max: 0.2, 0.15
+            pos_hint: {"center_x": 0.5, "center_y": 0.1}
+            md_bg_color: app.theme_cls.primary_dark
+            font_size: 16
+            on_release: app.root.current = "businessdemand"
+<BusinessDemandInfoPage>:
+    name: "businessdemand"
+    latlon: latlon
+    desig: desig
+    descr: descr
+    on_enter: root.checkforstuff()
+    Label:
+        id: latlon
+        text: "Latitude:\nLongitude:"
+        font_size: 17
+        color: (249/255, 1, 69/255, 1)
+        pos_hint: {"center_x": 0.25, "center_y": 0.8}
+    MDRectangleFlatIconButton:
+        icon: "map-marker-outline"
+        text: "Location"
+        font_size: 28
+        md_bg_color: app.theme_cls.primary_dark
+        pos_hint: {"center_x": 0.65, "center_y": 0.8}
+        on_release: app.root.current = "blocationsetter"
+    Label:
+        id: desig
+        pos_hint: {"center_x": 0.27, "center_y": 0.6}
+        text: "{Designations}"
+        size_hint_x: 0.3
+        size_hint_y: 0.2
+    MDRectangleFlatIconButton:
+        icon: "message-bulleted"
+        text: "Designations"
+        font_size: 28
+        md_bg_color: app.theme_cls.primary_dark
+        pos_hint: {"center_x": 0.65, "center_y": 0.6}
+        on_release: app.root.current = "designationdemand"
+        # Eco-Friendly, Kosher, etc.
+    Label:
+        id: descr
+        text: "[Description]"
+        font_size: 17
+        color: (249/255, 1, 69/255, 1)
+        pos_hint: {"center_x": 0.25, "center_y": 0.4}
+    MDRectangleFlatIconButton:
+        icon: "newspaper-variant-outline"
+        text: "Description"
+        font_size: 28
+        md_bg_color: app.theme_cls.primary_dark
+        pos_hint: {"center_x": 0.65, "center_y": 0.4}
+        on_release: root.setdescription()
+    MDRaisedButton:
+        md_bg_color: app.theme_cls.primary_light
+        text: "Done"
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.85, "center_y": 0.1}
+        on_release: app.root.current = "businesshome"
+<BusinessLocationSetter>:
+    name: "blocationsetter"
+    mapper: mapper
+    BoxLayout:
+        pos_hint: {"center_x": 0.5, "center_y": 0.55}
+        size_hint: 1.0, 0.9
+        MapView:
+            id: mapper
+            zoom: 5
+            double_tap_zoom: True
+            on_lat:
+                print('lat', self.lat)
+            on_lon:
+                print('lon', self.lon)
+    GridLayout:
+        pos_hint: {"center_x": 0.5, "center_y": 0.05}
+        size_hint: 1.0, 0.1
+        cols: 2
+        rows: 1
+        Button:
+            text: "Hint"
+            on_release: root.showhint()
+        Button:
+            text: "Place Marker"
+            on_release: root.askconfirm()
+<MapHintPopUp@Popup>:
+    name: "maphintpopup"
+    title: ""
+    separator_height: 0
+    auto_dismiss: True
+    size_hint_max: 0.1, 0.1
+    background_color: (0, 0, 0, 0)
+    pos_hint: {"center-x": 0.5, "center-y": 0.6}
+    BoxLayout:
+        background_color: (1, 1, 1, 0.6)
+        orientation: 'vertical'
+        size: root.width, root.height
+        Label:
+            text: "Find where your business is located on the map.\nCenter in on the exact location, and zoom in\nas much as possible. When your business is at the exact center of\nthe map, and you are zoomed in as much as possible, set the marker,\nwhich will then set that as the location for your business."
+<OriginalBusinessIconSelection>:
+    name: "designationdemand"
+    icons_selected: icons_selected
+    icons_for_selection: icons_for_selection
+    on_enter: root.checkforicons()
+    on_leave: root.rmv()
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.95}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_release: app.root.current = "businessdemand"
+        padding: 10, 5, 10, 5
+    Label:
+        text: "My Designations:"
+        pos_hint: {"center_x": 0.65, "center_y": 0.93}
+        size_hint: 0.7, 0.14
+    GridLayout:
+        cols: 8
+        rows: 4
+        id: icons_selected
+        pos_hint: {"center_x": 0.6, "center_y": 0.685}
+        size_hint: 0.8, 0.35
+    ScrollView:
+        bar_color: 1, 1, 0, 1
+        # size_hint_max: 1.0, 0.65
+        pos_hint: {"center_x": 0.5, "center_y": 0.01}
+        GridLayout:
+            cols: 14
+            rows: 15
+            id: icons_for_selection
+            size_hint_x: 1.0
+            size_hint_y: 3
+<HintPopUp@Popup>:
+    name: "hintpopup"
+    title: ""
+    separator_height: 0
+    auto_dismiss: True
+    hinttext: hinttext
+    btnforbind: btnforbind
+    size_hint: 0.35, 0.2
+    # pos_hint: {"x": self.x, "y": self.y}
+    pos_hint: {"center-x": 0.5, "center-y": 0.5}
+    BoxLayout:
+        background_color: (1, 1, 1, 0.6)
+        orientation: 'vertical'
+        size: root.width, root.height
+        Label:
+            text: "Add to your business's designations?"
+        Label:
+            id: hinttext
+            text: ""
+        BoxLayout:
+            Button:
+                text: "Cancel"
+                on_release: root.dismiss()
+            Button:
+                id: btnforbind
+                text: "OK!"
+<BusinessIconSelection>:
+    name: "designationdemandadd"
+    on_enter: root.checkforiconstwo()
+    on_leave: root.rmvtwo()
+    icons_selected: icons_selected
+    icons_for_selection: icons_for_selection
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.95}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_release: app.root.current = "bprofilepage"
+        padding: 10, 5, 10, 5
+    Label:
+        text: "My Designations:"
+        pos_hint: {"center_x": 0.65, "center_y": 0.93}
+        size_hint: 0.7, 0.14
+    GridLayout:
+        cols: 8
+        rows: 4
+        id: icons_selected
+        pos_hint: {"center_x": 0.6, "center_y": 0.685}
+        size_hint: 0.8, 0.35
+    ScrollView:
+        bar_color: 1, 1, 0, 1
+        # size_hint_max: 1.0, 0.65
+        pos_hint: {"center_x": 0.5, "center_y": 0.01}
+        GridLayout:
+            cols: 14
+            rows: 15
+            id: icons_for_selection
+            size_hint_x: 1.0
+            size_hint_y: 3
+<SetDescriptionPopUp@Popup>:
+    title: "Description:"
+    auto_dismiss: True
+    savechangestext: savechangestext
+    tisdpu: tisdpu
+    size_hint: 0.6, 0.6
+    pos_hint: {"center_x":0.5, "center_y":0.5}
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        TextInput:
+            size_hint: 1.0, 0.45
+            id: tisdpu
+            text: ""
+            on_text: root.savechangesstop()
+        GridLayout:
+            cols: 2
+            rows: 1
+            size_hint: 1.0, 0.15
+            Label:
+                id: savechangestext
+                text: ""
+            Button:
+                text: "Save Changes"
+                background_color: 1, 224/255, 0, 1
+                on_release: root.savechangesstart()
+<BusinessHome>:
+    name: "businesshome"
+    baddfood: baddfood
+    bfllwrs: bfllwrs
+    bpostbtn: bpostbtn
+    curbfoods: curbfoods
+    on_enter: root.onloadbfdl()
+    Label:
+        text: "DietFriend"
+        font_size: 28
+        color: (249/255, 1, 69/255, 1)
+        pos_hint: {"center_x": 0.25, "center_y": 0.85}
+    MDFloatingActionButton:
+        icon: "account"
+        md_bg_color: app.theme_cls.primary_dark
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.85, "center_y": 0.95}
+        ########### on_release: app.root.current = "bprofilepage"
+    MDFloatingActionButton:
+        icon: "cog"
+        md_bg_color: app.theme_cls.primary_dark
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.95, "center_y": 0.95}
+        on_release: app.root.current = "businesssettings"
+    MDFlatButton:
+        text: "Followers"
+        md_bg_color: app.theme_cls.primary_dark
+        id: bfllwrs
+        pos_hint: {"center_x": 0.64, "center_y": 0.85}
+        font_size: 16
+    MDFillRoundFlatIconButton:
+        icon: "nutrition"
+        md_bg_color: app.theme_cls.primary_dark
+        id: bpostbtn
+        text: "Post"
+        pos_hint: {"center_x": 0.64, "center_y": 0.75}
+        font_size: 16
+        ############ on_release: root.b_post()
+    MDFillRoundFlatIconButton:
+        icon: "camera-plus"
+        md_bg_color: app.theme_cls.primary_dark
+        id: baddfood
+        text: "Add Food"
+        pos_hint: {"center_x": 0.85, "center_y": 0.75}
+        font_size: 16
+        on_release: Factory.BusinessSelectionOrTake().open()
+    ScrollView:
+        bar_color: 1, 1, 0, 1
+        # size_hint_max: 1.0, 0.65
+        pos_hint: {"center_x": 0.5, "center_y": 0.18}
+        GridLayout:
+            cols: 1
+            id: curbfoods
+            size_hint_x: 1.0
+            size_hint_y: 50
+<BusinessSettings>:
+    name: "businesssettings"
+    GridLayout:
+        rows: 4
+        cols: 2
+        Button:
+            text: "<"
+            font_size: 16
+            size_hint: 0.5, 0.5
+            on_release: app.root.current = "businesshome"
+        Label:
+            text: ""
+            font_size: 16
+        Button:
+            text: "Setting A"
+            font_size: 16
+        Label:
+            text: ""
+            font_size: 16
+        Button:
+            text: "Setting B"
+            font_size: 16
+        Label:
+            text: ""
+            font_size: 16
+        Button:
+            text: "Log Out"
+            font_size: 16
+            on_release: app.root.current = "businesssignin"
+        Label:
+            text: ""
+            font_size: 16
+<BusinessMISpecFood>:
+    name: "mispec"
+    # editrbtn: editrbtn
+    flt: flt
+    fdnme: fdnme
+    mispecfoodimage: mispecfoodimage
+    mispecfoodnutrition: mispecfoodnutrition
+    servingmispec: servingmispec
+    caloriesmispec: caloriesmispec
+    totalfatmispec: totalfatmispec
+    saturatedfatmispec: saturatedfatmispec
+    transfatmispec: transfatmispec
+    cholesterolmispec: cholesterolmispec
+    sodiummispec: sodiummispec
+    totalcarbmispec: totalcarbmispec
+    fibermispec: fibermispec
+    totalsugarsmispec: totalsugarsmispec
+    addedsugarsmispec: addedsugarsmispec
+    proteinmispec: proteinmispec
+    calciummispec: calciummispec
+    ironmispec: ironmispec
+    potassiummispec: potassiummispec
+    vitaminamispec: vitaminamispec
+    vitaminbmispec: vitaminbmispec
+    vitamincmispec: vitamincmispec
+    vitamindmispec: vitamindmispec
+    on_enter: root.tempapply()
+    on_leave: root.mispecdestroy()
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.95}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_release: app.root.current = "businesshome"
+        padding: 10, 5, 10, 5
+    BoxLayout:
+        size_hint: 0.85, 0.5
+        pos_hint: {"center_x": 0.55, "center_y": 0.85}
+        padding: 50
+        spacing: 20
+        Image:
+            id: mispecfoodimage
+            source: ""
+            size_hint_min: 0.5, 0.5
+        Label:
+            text: ""
+            size: 0.4, 0.4
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: fdnme
+                text: "\n\n\n\nFood"
+                font_size: 20
+                size_hint: 0.4, 0.3
+                color: (78/255, 123/255, 173/255, 1)
+            BoxLayout:
+                id: flt
+            BoxLayout:
+                size_hint: 0.15, 0.2
+    # MDFillRoundFlatIconButton:
+    #     id: editrbtn
+    #     icon: "flask-empty-plus"
+    #     text: "Edit"
+    #     md_bg_color: app.theme_cls.primary_dark
+    #     pos_hint: {"center_x": 0.85, "center_y": 0.9}
+    #     font_size: 16
+    ScrollView:
+        bar_color: 1, 1, 0, 1
+        pos_hint: {"center_x": 0.5, "center_y": 0.18}
+        GridLayout:
+            cols: 2
+            id: mispecfoodnutrition
+            size_hint: 1.0, 0.65
+            Label:
+                text: "Grams/Serving"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: servingmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Calories"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: caloriesmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Total Fat"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: totalfatmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Saturated Fat"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: saturatedfatmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Trans Fat"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: transfatmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Cholesterol"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: cholesterolmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Sodium"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: sodiummispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Total Carb"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: totalcarbmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Fiber"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: fibermispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Total Sugars"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: totalsugarsmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Added Sugars"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: addedsugarsmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Protein"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: proteinmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Calcium"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: calciummispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Iron"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: ironmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Potassium"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: potassiummispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Vitamin A"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: vitaminamispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Vitamin B"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: vitaminbmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Vitamin C"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: vitamincmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                text: "Vitamin D"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+            Label:
+                id: vitamindmispec
+                text: "-"
+                font_size: 16
+                color: (78/255, 123/255, 173/255, 1)
+<FollowersPage>:
+    name: "fllwrs"
+    curfllwrs: curfllwrs
+    on_enter: root.on_load__()
+    on_leave: root.dstry()
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.95}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_release: app.root.current = "businesshome"
+    MDFillRoundFlatIconButton:
+        icon: "compass"
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.87, "center_y": 0.95}
+        on_release: app.root.current = "mapfollowerconcentrations"
+    ScrollView:
+        bar_color: 1, 1, 0, 1
+        # size_hint_max: 1.0, 0.65
+        pos_hint: {"center_x": 0.5, "center_y": 0.18}
+        GridLayout:
+            cols: 1
+            id: curfllwrs
+            size_hint_x: 1.0
+            size_hint_y: 50
+<Setting>:
+    name: "setting"
+    logout: logout
+    GridLayout:
+        cols: 2
+        rows: 4
+        Button:
+            text: "<"
+            font_size: 16
+            size_hint: 0.5, 0.5
+            on_release: app.root.current = "childapp"
+        Label:
+            text: ""
+            font_size: 16
+        Button:
+            text: "Setting A"
+            font_size: 16
+        Label:
+            text: ""
+            font_size: 16
+        Button:
+            text: "Setting B"
+            font_size: 16
+        Label:
+            text: ""
+            font_size: 16
+        Button:
+            id: logout
+            text: "Log Out"
+            font_size: 16
+            on_release: root.logout()
+        Label:
+            text: ""
+            font_size: 16
+<FindFood>:
+    name: "findfood"
+    mappit: mappit
+    on_enter: root.checkrequestloc()
+    FloatLayout:
+        pos_hint: {"center_x": 0.5, "center_y": 0.55}
+        size_hint: 1.0, 0.9
+        MapView:
+            id: mappit
+            zoom: 5
+            double_tap_zoom: True
+            on_lat:
+                print('lat', self.lat)
+            on_lon:
+                print('lon', self.lon)
+    GridLayout:
+        pos_hint: {"center_x": 0.5, "center_y": 0.05}
+        size_hint: 1.0, 0.1
+        cols: 2
+        rows: 1
+        Button:
+            text: "Hint"
+        Button:
+            text: "Place Marker"
+<ChildApp>:
+    name: "childapp"
+    calories: calories
+    total_fat: total_fat
+    saturated_fat: saturated_fat
+    trans_fat: trans_fat
+    cholesterol: cholesterol
+    sodium: sodium
+    total_carb: total_carb
+    fiber: fiber
+    total_sugars: total_sugars
+    added_sugars: added_sugars
+    protein: protein
+    calcium: calcium
+    iron: iron
+    potassium: potassium
+    vitamin_a: vitamin_a
+    vitamin_b: vitamin_b
+    vitamin_c: vitamin_c
+    vitamin_d: vitamin_d
+    caloriesmi: caloriesmi
+    total_fatmi: total_fatmi
+    saturated_fatmi: saturated_fatmi
+    trans_fatmi: trans_fatmi
+    cholesterolmi: cholesterolmi
+    sodiummi: sodiummi
+    total_carbmi: total_carbmi
+    fibermi: fibermi
+    total_sugarsmi: total_sugarsmi
+    added_sugarsmi: added_sugarsmi
+    proteinmi: proteinmi
+    calciummi: calciummi
+    ironmi: ironmi
+    potassiummi: potassiummi
+    vitamin_ami: vitamin_ami
+    vitamin_bmi: vitamin_bmi
+    vitamin_cmi: vitamin_cmi
+    vitamin_dmi: vitamin_dmi
+    on_enter: root.tempselectimg()
+    Label:
+        text: "DietFriend"
+        font_size: 32
+        background_color: 1.00, 1.00, 0.96
+        pos_hint: {"center_x": 0.3, "center_y": 0.93}
+        color: 0.94, 1.00, 0.20
+    MDFillRoundFlatIconButton:
+        icon: "baby-face-outline"
+        md_bg_color: app.theme_cls.primary_dark
+        size_hint_max: 0.05, 0.05
+        text: "I\'m Hungry!"
+        pos_hint: {"center_x": 0.69, "center_y": 0.95}
+        on_release: app.root.current = "findfood"
+    MDFloatingActionButton:
+        icon: "account"
+        md_bg_color: app.theme_cls.primary_dark
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.85, "center_y": 0.95}
+        on_release: app.root.current = "iprofilepage"
+    MDFloatingActionButton:
+        icon: "cog"
+        md_bg_color: app.theme_cls.primary_dark
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.95, "center_y": 0.95}
+        on_release: app.root.current = "setting"
+    Label:
+        text: "Raising health awareness since 2022"
+        font_size: 12
+        color: (149/255, 162/255, 177/255, 1)
+        size_hint: 0.05, 0.05
+        pos_hint: {"center_x": 0.3, "center_y": 0.85}
+        background_color: 1.00, 1.00, 0.96
+    MDFillRoundFlatIconButton:
+        icon: "camera-plus"
+        md_bg_color: app.theme_cls.primary_dark
+        size_hint_max: 0.05, 0.05
+        text: "Add Food"
+        pos_hint: {"center_x": 0.25, "center_y": 0.78}
+        on_release: Factory.SelectionOrTake().open()
+        # app.root.current = "nimager"
+        ## root.selectimg()
+    MDFillRoundFlatIconButton:
+        icon: "hamburger"
+        md_bg_color: app.theme_cls.primary_dark
+        size_hint_max: 0.05, 0.05
+        text: "Today's Foods"
+        pos_hint: {"center_x": 0.5, "center_y": 0.78}
+        on_release: app.root.current = "foodlistpage"
+    MDFillRoundFlatIconButton:
+        icon: "calendar-multiple-check"
+        md_bg_color: app.theme_cls.primary_dark
+        text: "Week Summary"
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.75, "center_y": 0.78}
+        on_release: app.root.current = "weeksummary"
+    MDFillRoundFlatIconButton:
+        icon: "calculator"
+        md_bg_color: app.theme_cls.primary_dark
+        text: "Estimate"
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.2, "center_y": 0.66}
+        on_release: root.estandrefall()
+    MDFillRoundFlatIconButton:
+        icon: "reply-all"
+        md_bg_color: app.theme_cls.primary_dark
+        text: "Revert"
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.4, "center_y": 0.66}
+        on_release: root.frevertall()
+    MDFillRoundFlatIconButton:
+        icon: "bell"
+        md_bg_color: app.theme_cls.primary_dark
+        text: "Notifications"
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.6, "center_y": 0.66}
+        on_release: app.root.current = "dealspage"
+    MDFillRoundFlatIconButton:
+        icon: "web"
+        md_bg_color: app.theme_cls.primary_dark
+        text: "Follow"
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.8, "center_y": 0.66}
+        on_release: app.root.current = "followpage"
+    GridLayout:
+        cols: 3
+        rows: 18
+        size_hint: 1, 0.6
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        Label:
+            text: "Calories"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: calories
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: caloriesmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            on_press: root.mibuttonchoice('calories')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Total Fat"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: total_fat
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: total_fatmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('total_fat')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Saturated Fat"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: saturated_fat
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: saturated_fatmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('saturated_fat')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Trans Fat"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: trans_fat
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: trans_fatmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('trans_fat')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Cholesterol"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: cholesterol
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: cholesterolmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('cholesterol')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Sodium"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: sodium
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: sodiummi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('sodium')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Total Carb"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: total_carb
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: total_carbmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('total_carb')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Fiber"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: fiber
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: fibermi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('fiber')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Total Sugars"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: total_sugars
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: total_sugarsmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('total_sugars')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Added Sugars"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: added_sugars
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: added_sugarsmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('added_sugars')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Protein"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: protein
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: proteinmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('protein')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Calcium"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: calcium
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: calciummi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('calcium')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Iron"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: iron
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: ironmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('iron')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Potassium"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: potassium
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: potassiummi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('potassium')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Vitamin A"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: vitamin_a
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: vitamin_ami
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('vitamin_a')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Vitamin B"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: vitamin_b
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: vitamin_bmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('vitamin_b')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Vitamin C"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: vitamin_c
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: vitamin_cmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('vitamin_c')
+            on_release: app.root.current = "moreinfo"
+        Label:
+            text: "Vitamin D"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Label:
+            id: vitamin_d
+            text: "-"
+            font_size: 16
+            color: (78/255, 123/255, 173/255, 1)
+        Button:
+            id: vitamin_dmi
+            text: "More Info"
+            background_color: 0, 1, 1, 1
+            font_size: 16
+            size: 40, 25
+            on_press: root.mibuttonchoice('vitamin_d')
+            on_release: app.root.current = "moreinfo"
+<SelectionOrTake@Popup>:
+    auto_dismiss: True
+    title: "Add Image"
+    size_hint: 0.6, 0.2
+    pos_hint: {"x":0.2, "top":0.9}
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        Button:
+            text: "Select File"
+            background_color: 1, 224/255, 0, 1
+            on_release: root.dismiss()
+            on_press: app.root.current = "nimager"
+        Button:
+            text: "Take Image"
+            background_color: 1, 224/255, 0, 1
+            on_release: root.dismiss()
+            on_press: app.root.current = "imagetake"
+<BusinessSelectionOrTake@Popup>:
+    auto_dismiss: True
+    title: "Add Image"
+    size_hint: 0.6, 0.2
+    pos_hint: {"center-x": 0.6, "center-y": 0.7}
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        Button:
+            text: "Select File"
+            background_color: 1, 224/255, 0, 1
+            on_release: root.dismiss()
+            on_press: app.root.current = "bnimager"
+        Button:
+            text: "Take Image"
+            background_color: 1, 224/255, 0, 1
+            on_release: root.dismiss()
+            on_press: app.root.current = "bimagetake"
+<ImageTake>:
+    name: "imagetake"
+    curimage: curimage
+    on_enter: root.streame()
+    on_leave: root.turn_off()
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+        Image:
+            id: curimage
+            source: ""
+            pos: self.pos
+            size: self.size
+        GridLayout:
+            size_hint_max_y: 10
+            cols: 2
+            Button:
+                text: "<"
+                on_release: app.root.current = "childapp"
+            Button:
+                text: "Take Picture"
+                on_press: root.take_picture()
+                on_release: app.root.current = "foodnamer"
+<BusinessImageTake>:
+    name: "bimagetake"
+    curimage: curimage
+    on_enter: root.streame()
+    on_leave: root.turn_off()
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+        Image:
+            id: curimage
+            source: ""
+            pos: self.pos
+            size: self.size
+        GridLayout:
+            size_hint_max_y: 10
+            cols: 2
+            Button:
+                text: "<"
+                on_release: app.root.current = "businesshome"
+            Button:
+                text: "Take Picture"
+                on_press: root.take_picture()
+                on_release: app.root.current = "bfoodnamer"
+<ImageSelection>:
+    name: "nimager"
+    id: imager
+    imgtoselect: imgtoselect
+    filechooser: filechooser
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.95}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_release: app.root.current = "childapp"
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+        Image:
+            id: imgtoselect
+            source: ""
+        FileChooserIconView:
+            id: filechooser
+            on_selection: imager.selected(filechooser.selection)
+    MDRaisedButton:
+        text: "Select"
+        size_hint_max: 0.2, 0.15
+        pos_hint: {"center_x": 0.87, "center_y": 0.1}
+        on_release: root.select(filechooser.selection)
+<BusinessImageSelection>:
+    name: "bnimager"
+    id: bimager
+    imgtoselect: imgtoselect
+    filechooser: filechooser
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.95}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_release: app.root.current = "businesshome"
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: 50
+        spacing: 20
+        Image:
+            id: imgtoselect
+            source: ""
+        FileChooserIconView:
+            id: filechooser
+            on_selection: bimager.selected(filechooser.selection)
+        MDRaisedButton:
+            text: "Select"
+            size_hint_max: 0.2, 0.15
+            pos_hint: {"center_x": 0.87, "center_y": 0.1}
+            on_release: root.select(filechooser.selection)
+<FoodNamingAfterImage>:
+    name: "foodnamer"
+    fd_name: fd_name
+    fd_serving: fd_serving
+    Label:
+        text: "Name your food"
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.8}
+    TextInput:
+        id: fd_name
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint: 0.8, 0.2
+        on_text: root.update_suggestions_menu()
+    Label:
+        text: "How many servings?\n Please type a decimal."
+        font_size: 17
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    TextInput:
+        id: fd_serving
+        text: "1.00"
+        size_hint: 0.8, 0.2
+        pos_hint: {"center_x": 0.5, "center_y": 0.35}
+    MDRaisedButton:
+        text: "Add Food!"
+        size_hint_max: 0.4, 0.15
+        pos_hint: {"center_x": 0.5, "center_y": 0.15}
+        on_release: root.namefood()
+<BusinessFoodNamingAfterImage>:
+    name: "bfoodnamer"
+    fd_name: fd_name
+    # fd_serving: fd_serving
+    Label:
+        text: "Name your food"
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.8}
+    TextInput:
+        id: fd_name
+        font_size: 18
+        pos_hint: {"center_x": 0.5, "center_y": 0.65}
+        size_hint: 0.8, 0.2
+    # Label:
+    #     text: "How many servings?\n Please type a decimal."
+    #     font_size: 17
+    #     pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    # TextInput:
+    #     id: fd_serving
+    #     text: "1.00"
+    #     size_hint: 0.8, 0.2
+    #     pos_hint: {"center_x": 0.5, "center_y": 0.35}
+    MDRaisedButton:
+        text: "Add Food!"
+        size_hint_max: 0.4, 0.15
+        pos_hint: {"center_x": 0.5, "center_y": 0.15}
+        on_release: root.namefood()
+<IndividualProfilePage>:
+    name: "iprofilepage"
+    profile_name: profile_name
+    sub_to: sub_to
+    i_profile_description: i_profile_description
+    list_of_favorites: list_of_favorites
+    on_enter: root.entre()
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.95}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_release: app.root.current = "childapp"
+    MDFloatLayout:
+        canvas:
+            Color:
+                rgb: 1, 1, 1
+            Ellipse:
+                source: app.profile_image
+                pos: 180, 360
+                size: 200, 200
+                angle_start: 0
+                angle_end: 360
+    MDRaisedButton:
+        text: "Edit"
+        pos_hint: {"x": 0.75, "top": 0.65}
+    ScrollView:
+        bar_color: 1, 1, 0, 1
+        pos_hint: {"x": 0.0, "top": 0.55}
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.7
+            size_hint_y: 3
+            Label:
+                id: profile_name
+                text: ""
+                size_hint_y: 0.1
+            GridLayout:
+                cols: 2
+                rows: 1
+                size_hint_y: 0.1
+                Label:
+                    text: "Following:"
+                MDRaisedButton:
+                    text: "Edit"
+            Label:
+                id: sub_to
+                text: "None"
+                size_hint_y: 0.5
+            GridLayout:
+                cols: 2
+                rows: 1
+                size_hint_y: 0.1
+                Label:
+                    text: "Description:"
+                MDRaisedButton:
+                    text: "Edit"
+            Label:
+                id: i_profile_description
+                text: "None"
+                size_hint_y: 0.5
+            Label:
+                text: "Favorite Food and Amenities:"
+                size_hint_y: 0.1
+            BoxLayout:
+                id: list_of_favorites
+                size_hint_y: 1.0
+    MDFloatingActionButtonSpeedDial:
+        data: app.individual_data
+        root_button_anim: True
+        callback: app.callback
+        # hint_animation: True
+        md_bg_color: app.theme_cls.primary_dark
+        bg_hint_color: app.theme_cls.primary_light
+        size_hint_max: 0.05, 0.05
+        pos_hint: {"center_x": 0.9, "center_y": 0.1}
+<LightVsDarkPage>:
+    name: "themeldpage"
+    restart_to_see_changes: restart_to_see_changes
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.9}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_press: restart_to_see_changes.text = ""
+        on_release: app.root.current = "iprofilepage"
+    Label:
+        text: "Theme: "
+        font_size: 32
+        color: (78/255, 123/255, 173/255, 1)
+        pos_hint: {"center_x": 0.3, "center_y": 0.91}
+    MDRaisedButton:
+        md_bg_color: app.theme_cls.primary_dark
+        text: "Light"
+        font_size: 31
+        size_hint: 0.65, 0.2
+        pos_hint: {"center_x": 0.5, "center_y": 0.7}
+        on_press: restart_to_see_changes.text = "Restart app to see changes."
+        on_release: root.change_theme("Light")
+    MDRaisedButton:
+        md_bg_color: app.theme_cls.primary_dark
+        text: "Dark"
+        font_size: 31
+        size_hint: 0.65, 0.2
+        pos_hint: {"center_x": 0.5, "center_y": 0.3}
+        on_press: restart_to_see_changes.text = "Restart app to see changes."
+        on_release: root.change_theme("Dark")
+    Label:
+        id: restart_to_see_changes
+        text: ""
+        font_size: 25
+        color: (78/255, 123/255, 173/255, 1)
+        pos_hint: {"center_x": 0.5, "center_y": 0.08}
+<ColorThemePage>:
+    name: "colorpage"
+    restart_to_see_changes_color: restart_to_see_changes_color
+    dropdown_button: dropdown_button
+    MDIconButton:
+        size_hint_max: 0.15, 0.15
+        pos_hint: {"center_x": 0.05, "center_y": 0.9}
+        theme_icon_color: "Custom"
+        icon: "arrow-left-bold-circle-outline"
+        icon_color: app.theme_cls.primary_color
+        on_press: restart_to_see_changes_color.text = ""
+        on_release: app.root.current = "iprofilepage"
+    Label:
+        text: "Color Theme: "
+        font_size: 32
+        color: (78/255, 123/255, 173/255, 1)
+        pos_hint: {"center_x": 0.3, "center_y": 0.91}
+    MDRaisedButton:
+        id: dropdown_button
+        text: "Color"
+        pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+        dropdown_bg: [1, 1, 1, 1]
+        on_release: root.dropdown_()
+    Label:
+        id: restart_to_see_changes_color
+        text: ""
+        font_size: 25
+        color: (78/255, 123/255, 173/255, 1)
+        pos_hint: {"center_x": 0.5, "center_y": 0.08}
+<DealsPage>:
+    name: "dealspage"
+    BoxLayout:
+        orientation: 'vertical'
+        GridLayout:
+            cols: 2
+            size_hint_max_y: 100
+            padding: 0, 0, 0, 20
+            Button:
+                text: "<"
+                font_size: 16
+                on_release: app.root.current = "childapp"
+            Label:
+                text: ""
+                font_size: 16
+        ScrollView:
+            Label:
+                text: "For Deals"
+                font_size: 12
+                size_hint_x: 1.0
+                size_hint_y: None
+                text_size: self.width, None
+                height: self.texture_size[1]
+<FollowPage>:
+    name: "followpage"
+    on_enter: root.onloadbfllw()
+    BoxLayout:
+        orientation: 'vertical'
+        GridLayout:
+            cols: 2
+            size_hint_max_y: 100
+            padding: 0, 0, 0, 20
+            Button:
+                text: "<"
+                font_size: 16
+                on_release: app.root.current = "childapp"
+            Label:
+                text: ""
+                font_size: 16
+        ScrollView:
+            bar_color: 1, 1, 0, 1
+            GridLayout:
+                cols: 1
+                id: forbusinesses
+                size_hint_x: 1.0
+                size_hint_y: 50
+<IProfileForBViewing>:
+    name: "ipfbv"
+    MDFloatLayout:
+        size_hint_max: 0.25, 0.25
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        canvas:
+            Color:
+                rgb: 1, 1, 1
+            Ellipse:
+                source: app.profile_image
+                pos: 280, 200
+                size: 200, 200
+                angle_start: 0
+                angle_end: 360
+<MapViewIProfileView>:
+    name: "ipmap"
+    MapView:
+        lat: 10
+        lon: 10
+        zoom: 5
+        on_lat:
+            print('lat', self.lat)
+        on_lon:
+            print('lon', self.lon)
+        MapMarkerPopup:
+            lat: 11
+            lon: 11
+<FoodDeletePopUp@Popup>:
+    name: "fdlstdeletepopup"
+    title: ""
+    separator_height: 0
+    auto_dismiss: True
+    hinttext: hinttext
+    btnforbind: btnforbind
+    size_hint: 0.35, 0.2
+    # pos_hint: {"x": self.x, "y": self.y}
+    pos_hint: {"center-x": 0.5, "center-y": 0.5}
+    BoxLayout:
+        background_color: (1, 1, 1, 0.6)
+        orientation: 'vertical'
+        size: root.width, root.height
+        Label:
+            text: "Are you sure you want to delete this food?"
+        Label:
+            id: hinttext
+            text: ""
+        BoxLayout:
+            Button:
+                text: "No"
+                on_release: root.dismiss()
+            Button:
+                id: btnforbind
+                text: "Yes"
+<FoodListPage>:
+    name: "foodlistpage"
+    forfoods: forfoods
+    on_enter: root.onloadfdl()
+    on_leave: root.descheduleit()
+    BoxLayout:
+        orientation: 'vertical'
+        GridLayout:
+            cols:2
+            size_hint_max_y: 140
+            padding: 0, 0, 0, 40
+            Button:
+                text: "<"
+                font_size: 15
+                on_release: app.root.current = "childapp"
+            Label:
+                text: "Your food list\n  for today:"
+                font_size: 22
+        ScrollView:
+            bar_color: 1, 1, 0, 1
+            GridLayout:
+                cols: 1
+                id: forfoods
+                size_hint_x: 1.0
+                size_hint_y: 50
+<MIFoodEditor@Popup>:
+    name: "mieditpopup"
+    title: ""
+    separator_height: 0
+    size_hint: 0.5, 0.5
+    pos_hint: {"center-x": 0.5, "center-y": 0.5}
+    for__food_name: for__food_name
+    to_edit: to_edit
+    forbnd: forbnd
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: for__food_name
+            text: ""
+        TextInput:
+            id: to_edit
+            text: ""
+        GridLayout:
+            rows: 2
+            cols: 2
+            padding: 6, 6, 6, 6
+            Label:
+                text: ""
+            Label:
+                text: ""
+            Label:
+                text: ""
+            Button:
+                id: forbnd
+                text: "Confirm!"
+<MoreInfo>:
+    name: "moreinfo"
+    formoreinfo: formoreinfo
+    on_enter: root.onloadmi()
+    on_leave: root.destroy()
+    BoxLayout:
+        orientation: 'vertical'
+        GridLayout:
+            cols: 2
+            size_hint_max_y: 140
+            padding: 0, 0, 0, 40
+            Button:
+                text: "<"
+                font_size: 15
+                on_press:
+                on_release: app.root.current = "childapp"
+            Label:
+                text: ""
+                font_size: 15
+        ScrollView:
+            bar_color: 1, 1, 0, 1
+            GridLayout:
+                cols: 1
+                id: formoreinfo
+                # font_size: 12
+                size_hint_x: 1.0
+                size_hint_y: 50
+<WeekSummary>:
+    name: "weeksummary"
+    graph: graph
+    caloriessum: caloriessum
+    total_fatsum: total_fatsum
+    saturated_fatsum: saturated_fatsum
+    trans_fatsum: trans_fatsum
+    cholesterolsum: cholesterolsum
+    sodiumsum: sodiumsum
+    total_carbsum: total_carbsum
+    fibersum: fibersum
+    total_sugarssum: total_sugarssum
+    added_sugarssum: added_sugarssum
+    proteinsum: proteinsum
+    calciumsum: calciumsum
+    ironsum: ironsum
+    potassiumsum: potassiumsum
+    vitamin_asum: vitamin_asum
+    vitamin_bsum: vitamin_bsum
+    vitamin_csum: vitamin_csum
+    vitamin_dsum: vitamin_dsum
+    BoxLayout:
+        orientation: 'vertical'
+        GridLayout:
+            cols: 2
+            size_hint_max_y: 50
+            Button:
+                text: "<"
+                on_release: app.root.current = "childapp"
+            Label:
+                text: ""
+        BoxLayout:
+            id: graph
+            orientation: 'vertical'
+            padding: 60, 0, 60, 0
+        GridLayout:
+            cols: 2
+            rows: 9
+            Button:
+                id: caloriessum
+                text: "Calories"
+                font_size: 12
+                on_press: root.changefeature('calories')
+                on_release: root._finish_init('dt')
+            Button:
+                id: total_fatsum
+                text: "Total Fat"
+                font_size: 12
+                on_press: root.changefeature('total_fat')
+                on_release: root._finish_init('dt')
+            Button:
+                id: saturated_fatsum
+                text: "Saturated Fat"
+                font_size: 12
+                on_press: root.changefeature('saturated_fat')
+                on_release: root._finish_init('dt')
+            Button:
+                id: trans_fatsum
+                text: "Trans Fat"
+                font_size: 12
+                on_press: root.changefeature('trans_fat')
+                on_release: root._finish_init('dt')
+            Button:
+                id: cholesterolsum
+                text: "Cholesterol"
+                font_size: 12
+                on_press: root.changefeature('cholesterol')
+                on_release: root._finish_init('dt')
+            Button:
+                id: sodiumsum
+                text: "Sodium"
+                font_size: 12
+                on_press: root.changefeature('sodium')
+                on_release: root._finish_init('dt')
+            Button:
+                id: total_carbsum
+                text: "Total Carbs"
+                font_size: 12
+                on_press: root.changefeature('total_carb')
+                on_release: root._finish_init('dt')
+            Button:
+                id: fibersum
+                text: "Fiber"
+                font_size: 12
+                on_press: root.changefeature('fiber')
+                on_release: root._finish_init('dt')
+            Button:
+                id: total_sugarssum
+                text: "Total Sugars"
+                font_size: 12
+                on_press: root.changefeature('total_sugars')
+                on_release: root._finish_init('dt')
+            Button:
+                id: added_sugarssum
+                text: "Added Sugars"
+                font_size: 12
+                on_press: root.changefeature('added_sugars')
+                on_release: root._finish_init('dt')
+            Button:
+                id: proteinsum
+                text: "Protein"
+                font_size: 12
+                on_press: root.changefeature('protein')
+                on_release: root._finish_init('dt')
+            Button:
+                id: calciumsum
+                text: "Calcium"
+                font_size: 12
+                on_press: root.changefeature('calcium')
+                on_release: root._finish_init('dt')
+            Button:
+                id: ironsum
+                text: "Iron"
+                font_size: 12
+                on_press: root.changefeature('iron')
+                on_release: root._finish_init('dt')
+            Button:
+                id: potassiumsum
+                text: "Potassium"
+                font_size: 12
+                on_press: root.changefeature('potassium')
+                on_release: root._finish_init('dt')
+            Button:
+                id: vitamin_asum
+                text: "Vitamin A"
+                font_size: 12
+                on_press: root.changefeature('vitamin_a')
+                on_release: root._finish_init('dt')
+            Button:
+                id: vitamin_bsum
+                text: "Vitamin B"
+                font_size: 12
+                on_press: root.changefeature('vitamin_b')
+                on_release: root._finish_init('dt')
+            Button:
+                id: vitamin_csum
+                text: "Vitamin C"
+                font_size: 12
+                on_press: root.changefeature('vitamin_c')
+                on_release: root._finish_init('dt')
+            Button:
+                id: vitamin_dsum
+                text: "Vitamin D"
+                font_size: 12
+                on_press: root.changefeature('vitamin_d')
+                on_release: root._finish_init('dt')
