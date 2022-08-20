@@ -12561,7 +12561,8 @@ class BusinessSignIn(Screen):
             with open(past[0], 'w') as xg:
                 xg.write(user)
                 xg.close()
-            path = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures"
+            ############## FIX THIS
+            path = os.path.join(os.path.dirname(__file__), "B_DietFriend_Pictures")
             if not os.path.exists(path):
                 os.makedirs(path)
         global universal_list
