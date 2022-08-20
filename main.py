@@ -1562,7 +1562,7 @@ def parameter_based_check_db_row(cursor, table, condition_1_name, cond_1, condit
 
 
 def clearmydietfriend_pictures():
-    internalpath = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+    internalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
     if not os.path.exists(internalpath):
         os.makedirs(internalpath)
     else:
@@ -2569,7 +2569,7 @@ def get_date_taken(path):
 def getimgs():
     global universal_list
     global user
-    internalpath = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+    internalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
     if not os.path.exists(internalpath):
         os.makedirs(internalpath)
     img_list = listdir(internalpath)
@@ -2584,7 +2584,7 @@ def getimgs():
 
 def getbimgs():
     global universal_list
-    binternalpath = r"C:\Users\asher\PycharmProjects\DietFriend\B_DietFriend_Pictures"
+    binternalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures"
     img_list = listdir(binternalpath)
     print(img_list)
     # img_list = rev(img_list)
@@ -2621,7 +2621,7 @@ def doprocess(getimgslst):
     # testcursor.execute("COMMIT")
     # """#"""
 
-    internalpath = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+    internalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
     """Convert IMGs from list to String"""
     datetimefortoday = datetime.datetime.now()
     crday = Day(datetimefortoday, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [],
@@ -2671,7 +2671,7 @@ def doprocess(getimgslst):
                 print("glob.glob IMG:")
                 print(filename + '\\' + getimgslst[0][imga])
                 count += 1
-        imgb = './DietFriend_Pictures/' + getimgslst[0][imga]
+        imgb = './DietFriend_Pictures'+user+'/' + getimgslst[0][imga]
         f = internalpath + '\\' + getimgslst[0][imga]
         text = recognize_text(imgb, f)
         ftext = onlystrings(text)
@@ -2783,7 +2783,7 @@ def dobprocess(getimgslst):
     # testcursor.execute(str_to_execute)
     # testcursor.execute("COMMIT")
 
-    binternalpath = r"C:\Users\asher\PycharmProjects\DietFriend\B_DietFriend_Pictures"
+    binternalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures"
     """Convert IMGs from list to String"""
     crday = Day(user, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [],
                 [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], getrandomid())
@@ -4146,12 +4146,12 @@ class SignInPage(Screen):
             with open(past[0], 'w') as xg:
                 xg.write(user)
                 xg.close()
-        path = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+        path = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
         if not os.path.exists(path):
             os.makedirs(path)
         # ADD USERNAME TO ALL 'path's
         global universal_list
-        """
+
         try:
             print("Signed in, constructing universal_list")
             with open(str(datetime.datetime.now())[0:10] + str(user) + ".txt", 'r') as p:
@@ -4174,10 +4174,10 @@ class SignInPage(Screen):
         except:
             universal_list = [[], [], []]
         # UNCOMMENT ABOVE + COMMENT LINE BELOW THIS FOR REAL PRODUCT
-        """
-        universal_list = [[], ['pop_tarts', 'turkey_sticks', 'calcium_powder', 'chili_magic', 'planters_peanuts',
-                               'buddig_beef', 'buddig_beef', 'tuna_can', 'wolf_brand_chili_magic'],
-                          [1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.50, 2.00, 1.60]]
+
+        # universal_list = [[], ['pop_tarts', 'turkey_sticks', 'calcium_powder', 'chili_magic', 'planters_peanuts',
+        #                        'buddig_beef', 'buddig_beef', 'tuna_can', 'wolf_brand_chili_magic'],
+        #                   [1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.50, 2.00, 1.60]]
 
 
 class FindFood(Screen):
@@ -8523,7 +8523,7 @@ class SignUpPage(Screen):
                 xg.write(user)
                 xg.close()
         global universal_list
-        """
+
         try:
             print("Signed in, constructing universal_list")
             with open(str(datetime.datetime.now())[0:10] + str(user) + ".txt", 'r') as p:
@@ -8546,10 +8546,11 @@ class SignUpPage(Screen):
         except:
             universal_list = [[], [], []]
         # UNCOMMENT ABOVE + COMMENT LINE BELOW THIS FOR REAL PRODUCT
-        """
-        universal_list = [[], ['pop_tarts', 'turkey_sticks', 'calcium_powder', 'chili_magic', 'planters_peanuts',
-                               'buddig_beef', 'buddig_beef', 'tuna_can', 'wolf_brand_chili_magic'],
-                          [1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00]]
+
+        # universal_list = [[], ['pop_tarts', 'turkey_sticks', 'calcium_powder', 'chili_magic', 'planters_peanuts',
+        #                        'buddig_beef', 'buddig_beef', 'tuna_can', 'wolf_brand_chili_magic'],
+        #                   [1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00]]
+
         # to_add_to_dietfriend_usernames_and_passwords = sql.SQL("")
         # conn = psycopg2.connect(
         #     database="dietfriendcab", user=user, password=password, host='127.0.0.1', port='5432'
@@ -8671,16 +8672,16 @@ class ImageSelection(Screen):
         global universal_list
         global user
         try:
-            ppath = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+            ppath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
             fname_list = listdir(ppath)
             disconnected_fname_list = fname_list
             if len(fname_list) > 0:
                 fname = priorname(priorfname=disconnected_fname_list[0], disconnected_fname_list=disconnected_fname_list)
             else:
                 fname = '1_food_picture.jpg'
-            path_img = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user + "\\" + fname
+            path_img = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user + "\\" + fname
             cwd = os.getcwd()
-            os.chdir(r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user)
+            os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user)
             print("IMAGE PATH")
             print(path_img)
             filenamed = cv2.imread(filename[0])
@@ -8706,16 +8707,16 @@ class BusinessImageSelection(Screen):
         global universal_list
         global user
         try:
-            ppath = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+            ppath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
             fname_list = listdir(ppath)
             disconnected_fname_list = fname_list
             if len(fname_list) > 0:
                 fname = priorname(priorfname=disconnected_fname_list[0], disconnected_fname_list=disconnected_fname_list)
             else:
                 fname = '1_food_picture.jpg'
-            path_img = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user + "\\" + fname
+            path_img = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user + "\\" + fname
             cwd = os.getcwd()
-            os.chdir(r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user)
+            os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user)
             print("IMAGE PATH")
             print(path_img)
             filenamed = cv2.imread(filename[0])
@@ -8846,16 +8847,16 @@ class ImageTake(Screen):
     def take_picture(self, *args):
         global universal_list
         global user
-        ppath = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+        ppath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
         fname_list = listdir(ppath)
         disconnected_fname_list = fname_list
         if len(fname_list) > 0:
             fname = priorname(priorfname=disconnected_fname_list[0], disconnected_fname_list=disconnected_fname_list)
         else:
             fname = '1_food_picture.jpg'
-        path_img = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user + "\\" + fname
+        path_img = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user + "\\" + fname
         cwd = os.getcwd()
-        os.chdir(r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user)
+        os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user)
         print("IMAGE PATH")
         print(path_img)
         picture = cv2.imwrite(path_img, self.image_frame)
@@ -8902,16 +8903,16 @@ class BusinessImageTake(Screen):
     def take_picture(self, *args):
         global universal_list
         global user
-        ppath = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+        ppath = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures" + user
         fname_list = listdir(ppath)
         disconnected_fname_list = fname_list
         if len(fname_list) > 0:
             fname = priorname(priorfname=disconnected_fname_list[0], disconnected_fname_list=disconnected_fname_list)
         else:
             fname = '1_food_picture.jpg'
-        path_img = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user + "\\" + fname
+        path_img = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures" + user + "\\" + fname
         cwd = os.getcwd()
-        os.chdir(r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user)
+        os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures" + user)
         print("IMAGE PATH")
         print(path_img)
         picture = cv2.imwrite(path_img, self.image_frame)
@@ -9675,8 +9676,8 @@ class FoodListPage(Screen):
         if indforfdlstpopup is not None:
             self.ids.forfoods.remove_widget(self.box[indforfdlstpopup])
             cwd = os.getcwd()
-            os.chdir(r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user)
-            path = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+            os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user)
+            path = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
             imgfilelst = os.listdir(path)
             try:
                 os.remove(imgfilelst[int(indforfdlstpopup)])
@@ -12560,7 +12561,7 @@ class BusinessSignIn(Screen):
             with open(past[0], 'w') as xg:
                 xg.write(user)
                 xg.close()
-            path = r"C:\Users\asher\PycharmProjects\DietFriend\B_DietFriend_Pictures"
+            path = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures"
             if not os.path.exists(path):
                 os.makedirs(path)
         global universal_list
@@ -12965,7 +12966,7 @@ class BusinessMISpecFood(Screen):
     def tempapply(self):
         global universal_list
         global user
-        path = r"C:\Users\asher\PycharmProjects\DietFriend\DietFriend_Pictures" + user
+        path = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures" + user
         c = b_defineifmissingmispecsession()
         with open(c, 'r') as d:
             fd_name = d.readlines()[0].strip()
@@ -14307,7 +14308,7 @@ class dietfriendv1(MDApp):
 
 
 def filecleanser(idx, cr):
-    path = r"C:\Users\asher\PycharmProjects\DietFriend"
+    path = os.path.dirname(os.path.realpath('DietFriend'))
     date = cr.date_time
     fdate = str(date)
     print("DATE")
@@ -14348,7 +14349,7 @@ def filecleanser(idx, cr):
 
 
 def filecleanser_dayexcluded():
-    path = r"C:\Users\asher\PycharmProjects\DietFriend"
+    path = os.path.dirname(os.path.realpath('DietFriend'))
     files = [f for f in os.listdir(path) if (os.path.basename(f).find("_fl") != -1 or
                                              os.path.basename(f).find("_bfl") != -1 or
                                              os.path.basename(f).find("_hint") != -1 or
@@ -14432,7 +14433,13 @@ def connection_init():
 
 
 # connect_to_database()
-# os.path.dirname('DietFriend')
+print("Check Path:")
+print(os.path.dirname(os.path.realpath('DietFriend')))
+print(":End Check")
+# print(os.path.dirname('DietFriend'))
+# print(Path('DietFriend').cwd())
+# print()
+# print()
 
 global theme
 global primary_p

@@ -1,0 +1,9 @@
+n n n n n n n n n n n n n n n n n n n n n
+r,turkey_sticks r, r,32.0 r,80.0 r,5.0 r,2.0 r,0.0 r,0.025 r,0.33 r,2.0 r,0.0 r,0.0 r,0.0 r,7.0 r,0.02 r,0.0004 r,0.0 r,0.0 r,0.0 r,0.0 r,0.0 
+n n n n n n n n n n n n n n n n n n n n n
+r,chili_magic r, r,0.001 r,90.0 r,0.0 r,0.0 r,0.0 r,-2000.0 r,1.0110000000000001 r,-2000.0 r,4.0 r,-2000.0 r,-2000.0 r,5.0 r,0.052000000000000005 r,0.0018 r,-2000.0 r,-2000.0 r,-2000.0 r,-2000.0 r,-2000.0 
+r,planters_peanuts r, r,12.0 r,-2000.0 r,-2000.0 r,-2000.0 r,-2000.0 r,-2000.0 r,-2000.0 r,4.0 r,3.0 r,-2000.0 r,-2000.0 r,3.0 r,0.001 r,0.0007 r,-2000.0 r,-2000.0 r,-2000.0 r,-2000.0 r,-2000.0 
+n n n n n n n n n n n n n n n n n n n n n
+n n n n n n n n n n n n n n n n n n n n n
+n n n n n n n n n n n n n n n n n n n n n
+n n n n n n n n n n n n n n n n n n n n n
