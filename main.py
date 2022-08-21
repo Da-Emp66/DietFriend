@@ -1562,7 +1562,7 @@ def parameter_based_check_db_row(cursor, table, condition_1_name, cond_1, condit
 
 
 def clearmydietfriend_pictures():
-    internalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
+    internalpath = os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user)
     if not os.path.exists(internalpath):
         os.makedirs(internalpath)
     else:
@@ -2361,34 +2361,41 @@ def remakeifmade(cr, cuser, d):
         print("All Data:")
         print(alldata)
         alldatafixed = fixalldata(alldata)
-        ftf_t = alldatafixed[0]
-        etf_e = alldatafixed[1]
-        itf_r = alldatafixed[2]
-        tf_txexrx = alldatafixed[3]
-        print("ftf_t")
-        print(ftf_t)
-        print("etf_e")
-        print(etf_e)
-        print("itf_r")
-        print(itf_r)
-        print("tf_txexrx")
-        print(tf_txexrx)
-        full = defineifmissing(cr)
-        est = defineifmissingestref(cr)
-        ind = defineifmissingindividuals(cr)
-        typ = defineifmissingtype(cr)
-        with open(full, 'w') as full_open:
-            full_open.write(ftf_t)
-            full_open.close()
-        with open(est, 'w') as est_open:
-            est_open.write(etf_e)
-            est_open.close()
-        with open(ind, 'w') as ind_open:
-            ind_open.write(itf_r)
-            ind_open.close()
-        with open(typ, 'w') as typ_open:
-            typ_open.write(tf_txexrx)
-            typ_open.close()
+        try:
+            ftf_t = alldatafixed[0]
+            etf_e = alldatafixed[1]
+            itf_r = alldatafixed[2]
+            tf_txexrx = alldatafixed[3]
+            print("ftf_t")
+            print(ftf_t)
+            print("etf_e")
+            print(etf_e)
+            print("itf_r")
+            print(itf_r)
+            print("tf_txexrx")
+            print(tf_txexrx)
+            full = defineifmissing(cr)
+            est = defineifmissingestref(cr)
+            ind = defineifmissingindividuals(cr)
+            typ = defineifmissingtype(cr)
+            with open(full, 'w') as full_open:
+                full_open.write(ftf_t)
+                full_open.close()
+            with open(est, 'w') as est_open:
+                est_open.write(etf_e)
+                est_open.close()
+            with open(ind, 'w') as ind_open:
+                ind_open.write(itf_r)
+                ind_open.close()
+            with open(typ, 'w') as typ_open:
+                typ_open.write(tf_txexrx)
+                typ_open.close()
+        except IndexError:
+            testercursor = con.cursor()
+            str_to_execute = "DELETE FROM dietfriend_client_food_data WHERE username = \'"+cuser+"\' AND date = \'" + str(
+                datetime.datetime.now())[0:10] + "\'"
+            testercursor.execute(str_to_execute)
+            testercursor.execute("COMMIT")
 
 
 def b_remakeifmade():
@@ -2569,7 +2576,7 @@ def get_date_taken(path):
 def getimgs():
     global universal_list
     global user
-    internalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
+    internalpath = os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user)
     if not os.path.exists(internalpath):
         os.makedirs(internalpath)
     img_list = listdir(internalpath)
@@ -2584,7 +2591,7 @@ def getimgs():
 
 def getbimgs():
     global universal_list
-    binternalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures"
+    binternalpath = os.path.join(os.path.dirname(__file__), "B_DietFriend_Pictures")
     img_list = listdir(binternalpath)
     print(img_list)
     # img_list = rev(img_list)
@@ -2621,7 +2628,7 @@ def doprocess(getimgslst):
     # testcursor.execute("COMMIT")
     # """#"""
 
-    internalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
+    internalpath = os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user)
     """Convert IMGs from list to String"""
     datetimefortoday = datetime.datetime.now()
     crday = Day(datetimefortoday, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [],
@@ -2783,7 +2790,7 @@ def dobprocess(getimgslst):
     # testcursor.execute(str_to_execute)
     # testcursor.execute("COMMIT")
 
-    binternalpath = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures"
+    binternalpath = os.path.join(os.path.dirname(__file__), "B_DietFriend_Pictures")
     """Convert IMGs from list to String"""
     crday = Day(user, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [],
                 [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], getrandomid())
@@ -4146,7 +4153,7 @@ class SignInPage(Screen):
             with open(past[0], 'w') as xg:
                 xg.write(user)
                 xg.close()
-        path = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
+        path = os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user)
         if not os.path.exists(path):
             os.makedirs(path)
         # ADD USERNAME TO ALL 'path's
@@ -8672,16 +8679,16 @@ class ImageSelection(Screen):
         global universal_list
         global user
         try:
-            ppath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
+            ppath = os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user)
             fname_list = listdir(ppath)
             disconnected_fname_list = fname_list
             if len(fname_list) > 0:
                 fname = priorname(priorfname=disconnected_fname_list[0], disconnected_fname_list=disconnected_fname_list)
             else:
                 fname = '1_food_picture.jpg'
-            path_img = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user + "\\" + fname
+            path_img = os.path.join(os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user), fname)
             cwd = os.getcwd()
-            os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user)
+            os.chdir(os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user))
             print("IMAGE PATH")
             print(path_img)
             filenamed = cv2.imread(filename[0])
@@ -8707,16 +8714,17 @@ class BusinessImageSelection(Screen):
         global universal_list
         global user
         try:
-            ppath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
+            ppath = os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user)
             fname_list = listdir(ppath)
             disconnected_fname_list = fname_list
             if len(fname_list) > 0:
                 fname = priorname(priorfname=disconnected_fname_list[0], disconnected_fname_list=disconnected_fname_list)
             else:
                 fname = '1_food_picture.jpg'
-            path_img = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user + "\\" + fname
+            # Original Below line for all path_img alike: os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user + "\\" + fname
+            path_img = os.path.join(os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user), fname)
             cwd = os.getcwd()
-            os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user)
+            os.chdir(os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user))
             print("IMAGE PATH")
             print(path_img)
             filenamed = cv2.imread(filename[0])
@@ -8847,16 +8855,16 @@ class ImageTake(Screen):
     def take_picture(self, *args):
         global universal_list
         global user
-        ppath = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
+        ppath = os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user)
         fname_list = listdir(ppath)
         disconnected_fname_list = fname_list
         if len(fname_list) > 0:
             fname = priorname(priorfname=disconnected_fname_list[0], disconnected_fname_list=disconnected_fname_list)
         else:
             fname = '1_food_picture.jpg'
-        path_img = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user + "\\" + fname
+        path_img = os.path.join(os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user), fname)
         cwd = os.getcwd()
-        os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user)
+        os.chdir(os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user))
         print("IMAGE PATH")
         print(path_img)
         picture = cv2.imwrite(path_img, self.image_frame)
@@ -8903,16 +8911,16 @@ class BusinessImageTake(Screen):
     def take_picture(self, *args):
         global universal_list
         global user
-        ppath = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures" + user
+        ppath = os.path.join(os.path.dirname(__file__), "B_DietFriend_Pictures"+user)
         fname_list = listdir(ppath)
         disconnected_fname_list = fname_list
         if len(fname_list) > 0:
             fname = priorname(priorfname=disconnected_fname_list[0], disconnected_fname_list=disconnected_fname_list)
         else:
             fname = '1_food_picture.jpg'
-        path_img = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures" + user + "\\" + fname
+        path_img = os.path.join(os.path.join(os.path.dirname(__file__), "B_DietFriend_Pictures"+user), fname)
         cwd = os.getcwd()
-        os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures" + user)
+        os.chdir(os.path.join(os.path.dirname(__file__), "B_DietFriend_Pictures"+user))
         print("IMAGE PATH")
         print(path_img)
         picture = cv2.imwrite(path_img, self.image_frame)
@@ -9676,8 +9684,8 @@ class FoodListPage(Screen):
         if indforfdlstpopup is not None:
             self.ids.forfoods.remove_widget(self.box[indforfdlstpopup])
             cwd = os.getcwd()
-            os.chdir(os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user)
-            path = os.path.dirname(os.path.realpath('DietFriend')) + "\\DietFriend_Pictures" + user
+            path = os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user)
+            os.chdir(path)
             imgfilelst = os.listdir(path)
             try:
                 os.remove(imgfilelst[int(indforfdlstpopup)])
@@ -12967,7 +12975,7 @@ class BusinessMISpecFood(Screen):
     def tempapply(self):
         global universal_list
         global user
-        path = os.path.dirname(os.path.realpath('DietFriend')) + "\\B_DietFriend_Pictures" + user
+        path = os.path.join(os.path.dirname(__file__), "B_DietFriend_Pictures"+user)
         c = b_defineifmissingmispecsession()
         with open(c, 'r') as d:
             fd_name = d.readlines()[0].strip()
@@ -14309,7 +14317,7 @@ class dietfriendv1(MDApp):
 
 
 def filecleanser(idx, cr):
-    path = os.path.dirname(os.path.realpath('DietFriend'))
+    path = os.path.dirname(__file__)
     date = cr.date_time
     fdate = str(date)
     print("DATE")
@@ -14350,7 +14358,7 @@ def filecleanser(idx, cr):
 
 
 def filecleanser_dayexcluded():
-    path = os.path.dirname(os.path.realpath('DietFriend'))
+    path = os.path.dirname(__file__)
     files = [f for f in os.listdir(path) if (os.path.basename(f).find("_fl") != -1 or
                                              os.path.basename(f).find("_bfl") != -1 or
                                              os.path.basename(f).find("_hint") != -1 or
@@ -14435,7 +14443,7 @@ def connection_init():
 
 # connect_to_database()
 print("Check Path:")
-print(os.path.dirname(os.path.realpath('DietFriend')))
+print(os.path.dirname(__file__))
 print(":End Check")
 # print(os.path.dirname('DietFriend'))
 # print(Path('DietFriend').cwd())
