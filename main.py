@@ -12449,8 +12449,9 @@ class MoreInfo(Screen):
             vv = mft.readlines()
             print("VVVVVVVVVVVVVV")
             print(vv)
-            if vv[len(vv) - 1].find('i') == -1 and vv[len(vv) - 1].find('x') == -1:
-                vv.pop(len(vv) - 1)
+            if len(vv) > 0:
+                if vv[len(vv) - 1].find('i') == -1 and vv[len(vv) - 1].find('x') == -1:
+                    vv.pop(len(vv) - 1)
             print(vv)
             mft.close()
         text = ""
