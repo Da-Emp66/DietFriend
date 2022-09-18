@@ -1562,6 +1562,7 @@ def parameter_based_check_db_row(cursor, table, condition_1_name, cond_1, condit
 
 
 def clearmydietfriend_pictures():
+    global cleared
     internalpath = os.path.join(os.path.dirname(__file__), "DietFriend_Pictures"+user)
     if not os.path.exists(internalpath):
         os.makedirs(internalpath)
@@ -1574,6 +1575,7 @@ def clearmydietfriend_pictures():
             os.remove(q[qq])
             qq += 1
         os.chdir(uop)
+        cleared = True
 
 
 def defineifmissing(curday):
@@ -1586,9 +1588,9 @@ def defineifmissing(curday):
         fo = open(curtxt, 'r')
         fo.close()
     except FileNotFoundError:
+        clearmydietfriend_pictures()
         fm = open(curtxt, 'w')
         fm.close()
-        clearmydietfriend_pictures()
     global con
     cur = con.cursor()
     if not row_exists_client(cur, user, curdayfupdtd):
@@ -2607,6 +2609,8 @@ def doprocess(getimgslst):
     loggedin = True
     global user
     global con
+    global cleared
+    cleared = False
     # testcursor = con.cursor()
     # ####
     # str_to_execute = "DELETE FROM dietfriend_client_food_data WHERE username = \'test18\' AND date = \'2022-08-04\'"
@@ -2638,6 +2642,8 @@ def doprocess(getimgslst):
     datestring = datestring[0:10]
     remakeifmade(crday, user, datestring)
     crtxt = defineifmissing(crday)
+    if cleared:
+        getimgslst = [[], [], []]
     numserv = readnumservings(crday)
     typer = readtypes(crday)
     fromtyper = defineifmissingtype(crday)
@@ -7446,7 +7452,7 @@ def follow(business_name):
         crs.execute(str_to_execute)
         crs.execute("COMMIT")
     else:
-        ############################################################################################################## FIX THIS: NO WHERE IN INSERT
+        #################################### FIX THIS: NO WHERE IN INSERT
         """ Original Here
         str_to_execute = \
             "INSERT INTO business_followers(followers) VALUES(\'" + user + "\n" + "\') WHERE (business_name = \'" + business_name + "\')"
@@ -14459,6 +14465,7 @@ global user
 global universal_list
 global est_serving_size
 global indforfdlstpopup
+global cleared
 # [num_params, table, col_name, set_to, condition_1_name, cond_1, condition_2_name, cond_2]
 listforupdatedb = [[2, "dietfriend_client_food_data", "fulltextfile_t", "", "username", "", "date", ""],
                    [2, "dietfriend_client_food_data", "typefile_tx_ex_rx_", "", "username", "", "date", ""],
