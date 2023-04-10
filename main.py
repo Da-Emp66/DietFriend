@@ -14,7 +14,7 @@ import pytesseract
 import torch
 import torchvision
 import torchaudio
-import transformers
+# import transformers
 import PIL.Image
 import shutil
 
@@ -8842,7 +8842,10 @@ class ImageTake(Screen):
     def turn_off(self):
         Clock.unschedule(self.load_video, 1.0 / 30.0)
         self.streamvideocaptureobject.release()
-        cv2.destroyAllWindows()
+        try:
+            cv2.destroyAllWindows()
+        except:
+            pass
 
     # cv2.imshow('Capturing Video', frame)
     # image = pygame.image.fromstring(frame.tobytes(), (640, 480), "RGB")  # convert received image from string
@@ -14258,7 +14261,7 @@ class WeekSummary(Screen):
         self.ymaxcal = maxcal(cd, featr)
         print(self.ymaxcal)
         print("AHAH2222")
-        self.graph = Graph(xmin=0, xmax=self.samples, ymin=0, ymax=self.ymaxcal, border_color=[0, 1, 1, 1],
+        self.graph = Graph(xmin=0, xmax=self.samples, ymin=0, ymax=self.ymaxcal+1, border_color=[0, 1, 1, 1],
                            tick_color=[0, 1, 1, 0.7], x_grid=True, y_grid=True, draw_border=True, x_grid_label=True,
                            y_grid_label=True, x_ticks_major=1, y_ticks_major=self.ymaxcal / 15)
         self.ids.graph.add_widget(self.graph)
